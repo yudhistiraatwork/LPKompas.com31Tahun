@@ -302,35 +302,10 @@
         content: "";
         opacity: .8;
       }
-      .benefit-layout { display: grid; align-items: center; gap: 30px; }
-      .benefit-copy h2 { margin: 18px 0 25px; }
-      .benefit-copy > p:last-of-type { max-width: 34rem; color: var(--muted); font-size: 16px; line-height: 1.65; }
-      .benefit-list { display: grid; gap: 0; margin: 32px 0 0; padding: 0; list-style: none; }
-      .benefit-list li {
-        display: grid;
-        grid-template-columns: 25px 1fr;
-        gap: 10px;
-        padding: 14px 0;
-        border-bottom: 1px solid var(--line);
-        color: #dfded9;
-        font-size: 16px;
-        line-height: 1.4;
-      }
-      .checkmark { color: var(--yellow); font-size: 16px; line-height: 1.15; }
-      .benefit-visual { position: relative; min-height: 300px; }
-      .benefit-visual::before {
-        position: absolute;
-        top: 17%;
-        right: 6%;
-        width: 65%;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        background: var(--orange);
-        content: "";
-        filter: blur(70px);
-        opacity: .25;
-      }
-      .benefit-visual img { position: absolute; right: -12px; bottom: -55px; width: min(360px, 85vw); height: auto; }
+      .benefit-layout { max-width: 1080px; }
+      .benefit-copy h2 { max-width: 18ch; margin: 0 0 28px; }
+      .benefit-copy > p:last-of-type { width: 100%; max-width: none; margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+      .benefit-copy > p:last-of-type strong { color: #fffefa; font-weight: 500; }
 
       .faq { padding: 0 0 34px; background: #111; }
       .faq-wrap { padding: 80px 0 0; border-top: 1px solid var(--line); }
@@ -369,6 +344,23 @@
       .faq-answer ul, .faq-answer ol { display: grid; gap: 8px; margin: 0 0 18px; padding-left: 22px; }
       .faq-answer a { color: var(--yellow); text-decoration: underline; text-decoration-color: rgba(255, 200, 0, .45); text-underline-offset: 3px; }
 
+      .journalism { padding: 88px 0; background: #fff; color: #171717; }
+      .journalism-wrap { max-width: 1000px; }
+      .journalism h2 {
+        max-width: 16ch;
+        margin: 0 0 28px;
+        color: #171717;
+        font-family: var(--serif);
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: -0.045em;
+        line-height: 1.2;
+      }
+      .journalism-copy { max-width: 42rem; }
+      .journalism-copy p { margin: 0 0 18px; color: #5f5f5b; font-size: 14px; line-height: 1.7; }
+      .journalism-copy strong { color: #202020; font-weight: 600; }
+      .journalism .button { margin-top: 10px; }
+
       .contact { padding: 72px 0 96px; background: #111; }
       .contact-heading { margin-bottom: 26px; }
       .contact-card { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #181818; }
@@ -382,15 +374,14 @@
       .contact-label { display: block; margin-bottom: 7px; color: #aaa8a2; font-size: 14px; }
       .contact-value { color: var(--yellow); font-size: 16px; font-weight: 600; line-height: 1.2; }
 
-      .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .benefit-list li, .faq-intro, .faq-list summary, .faq-answer, .contact-hours { font-size: 14px; }
+      .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .faq-intro, .faq-list summary, .faq-answer, .contact-hours { font-size: 14px; }
 
       @media (max-width: 1279px) {
-        .hero-copy, .section-head, .benefit-copy, .faq-head, .contact { text-align: center; }
-        .hero-anniversary, .section-head h2, .benefit-copy h2, .faq h2, .contact-heading, .section-intro, .benefit-copy > p:last-of-type, .faq-intro { margin-inline: auto; }
+        .hero-copy, .section-head, .benefit-copy, .faq-head, .journalism, .contact { text-align: center; }
+        .hero-anniversary, .section-head h2, .benefit-copy h2, .faq h2, .journalism h2, .contact-heading, .section-intro, .benefit-copy > p:last-of-type, .faq-intro, .journalism-copy { margin-inline: auto; }
         .hero-actions, .price { justify-content: center; }
         .hero-visual img { right: 50%; transform: translate(50%, -50%); }
         .hero-visual::after { right: 50%; transform: translate(50%, -50%); }
-        .benefit-list { max-width: 540px; margin-inline: auto; text-align: left; }
         .plan { text-align: center; }
         .plan-description { margin-inline: auto; }
         .faq-list summary, .faq-answer { text-align: center; }
@@ -444,7 +435,7 @@
         .faq .wrap, .contact .wrap { width: calc(100% - 370px); max-width: 860px; }
         .hero-mobile-visual { display: none; }
         .hero { min-height: 0; }
-        .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .benefit-list li, .faq-intro, .faq-list summary, .faq-answer, .contact-hours { font-size: 16px; }
+        .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .faq-intro, .faq-list summary, .faq-answer, .contact-hours, .journalism-copy p { font-size: 16px; }
         h1 { max-width: none; font-size: 56px; }
         .section-head h2, .benefit-copy h2 { max-width: none; font-size: 40px; }
         .benefit-copy h2 .benefit-line { display: block; }
@@ -455,9 +446,20 @@
         .hero-content { grid-template-columns: .98fr 1.02fr; gap: 12px; padding: 108px 0; }
         .hero-visual { display: block; min-height: 380px; margin: -10px -80px -24px -60px; }
         .hero-visual img { right: -12px; width: min(620px, 49vw); }
-        .benefit-layout { grid-template-columns: minmax(0, 1fr) minmax(330px, .7fr); gap: 60px; }
-        .benefit-visual { min-height: 440px; }
-        .benefit-visual img { right: -36px; bottom: -64px; width: min(455px, 39vw); }
+        .benefit-layout { max-width: 1080px; }
+        .journalism-wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 72px; align-items: start; }
+        .journalism h2 { margin-bottom: 0; font-size: 40px; }
+      }
+      @media (min-width: 600px) and (max-width: 1439px) {
+        .hero-content { grid-template-columns: 1fr; gap: 0; }
+        .hero-copy { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .hero-anniversary { order: 1; margin-inline: auto; }
+        .hero-copy h1 { order: 2; max-width: none; font-size: 44px; white-space: nowrap; }
+        .hero-description { order: 3; max-width: 44rem; margin-inline: auto; }
+        .hero-actions { order: 4; }
+        .hero-offer { order: 5; max-width: 38rem; margin-inline: auto; }
+        .hero-mobile-visual { order: 6; display: block; width: min(340px, 52vw); margin: 34px auto 0; }
+        .hero-visual { display: none; }
       }
       @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button, .plan { transition: none; } .hero-visual::before, .hero-visual::after, .plan.featured::before, .plan-sparkle { animation: none; } }
     </style>
@@ -489,18 +491,7 @@
           <div class="wrap benefit-layout">
             <div class="benefit-copy">
               <h2 id="benefit-title"><span class="benefit-line">Akses Semua</span> <span class="benefit-line">Keuntungan Membership</span></h2>
-              <p>Satu membership untuk membaca lebih nyaman, mengikuti cerita pilihan, dan menemukan lebih banyak hal yang penting bagi Anda.</p>
-              <ul class="benefit-list">
-                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Tanpa iklan, load lebih cepat</span></li>
-                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Artikel utuh dalam 1 halaman</span></li>
-                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Akses konten orisinal tanpa batas</span></li>
-                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Podcast eksklusif MorningBrief</span></li>
-                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Newsletter eksklusif penuh insight</span></li>
-                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Akses game Croz/Word tanpa batas</span></li>
-              </ul>
-            </div>
-            <div class="benefit-visual" aria-hidden="true">
-              <img src="Assets/MAXFeatures.png" alt="" />
+              <p><strong>Nikmati pengalaman membaca yang lebih nyaman dengan akses tanpa iklan, artikel utuh dalam satu halaman, dan konten orisinal tanpa batas.</strong> Lengkapi hari Anda dengan podcast eksklusif MorningBrief, newsletter penuh insight, serta akses Croz/Word tanpa batas.</p>
             </div>
           </div>
         </section>
@@ -612,6 +603,18 @@
                 <span class="contact-label">WhatsApp</span>
                 <span class="contact-value">+62 812 2011 3212</span>
               </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="journalism" aria-labelledby="journalism-title">
+          <div class="wrap journalism-wrap">
+            <h2 id="journalism-title">Gabung membership untuk mendukung teman jurnalis</h2>
+            <div class="journalism-copy">
+              <p>Jurnalisme berkualitas butuh waktu, keahlian, dan kerja keras. Dengan bergabung, kamu turut mendukung para jurnalis, editor, dan tim kreatif yang setiap hari mencari fakta, memverifikasi, dan menyajikan informasi secara jernih.</p>
+              <p>Di tengah derasnya arus informasi—termasuk konten palsu buatan AI—<strong>jurnalisme yang dapat dipercaya menjadi semakin penting.</strong> Kami percaya, informasi yang baik bukan soal seberapa cepat ia sampai, tapi seberapa jernih ia disajikan.</p>
+              <p>Dengan bergabung di Kompas.com Plus, kamu tidak hanya mendapat akses lebih luas. <strong>Kamu ikut menjaga jurnalisme tetap jernih dan berdampak.</strong></p>
+              <a class="button" href="#harga">Dukung Jurnalisme yang Berdampak</a>
             </div>
           </div>
         </section>
