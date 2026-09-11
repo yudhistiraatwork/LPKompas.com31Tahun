@@ -1,107 +1,632 @@
 <!doctype html>
-<html lang="id" class="no-js">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080808" />
     <meta
       name="description"
-      content="Rayakan 31 tahun Kompas.com dengan harga spesial Membership Premium."
+      content="Rayakan 31 tahun Kompas.com dengan penawaran spesial Kompas.com PLUS MAX."
     />
-    <meta name="theme-color" content="#031221" />
-    <title>31 Tahun Kompas.com — Anniversary Sale</title>
-    <link rel="preload" href="./assets/31-kompas-light.png" as="image" />
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="./script.js" defer></script>
+    <title>31 Tahun Kompas.com — PLUS MAX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+    <style>
+      :root {
+        --ink: #090909;
+        --charcoal: #151515;
+        --soft-black: #202020;
+        --line: rgba(255, 255, 255, 0.15);
+        --mist: #e8e7e2;
+        --muted: #a8a8a2;
+        --yellow: #ffc800;
+        --orange: #ff8b2a;
+        --serif: "Inter", Arial, sans-serif;
+        --sans: "Inter", Arial, sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--ink);
+        color: var(--mist);
+        font-family: var(--sans);
+        font-size: 14px;
+        font-weight: 400;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+
+      .page-shell { overflow: clip; }
+      .wrap, .hero-content { width: calc(100% - 40px); margin-inline: auto; }
+      .hero {
+        position: relative;
+        min-height: 0;
+        isolation: isolate;
+        border-bottom: 1px solid var(--line);
+        background:
+          radial-gradient(circle at 82% 22%, rgba(255, 139, 42, 0.2), transparent 22rem),
+          radial-gradient(circle at 28% 100%, rgba(255, 200, 0, 0.1), transparent 28rem),
+          var(--ink);
+      }
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+        background-size: 54px 54px;
+        mask-image: linear-gradient(to bottom, black, transparent 75%);
+        content: "";
+        pointer-events: none;
+      }
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        gap: 18px;
+        padding: 108px 0;
+      }
+      .hero-copy { position: relative; z-index: 2; }
+      h1, h2, h3, p { margin-top: 0; }
+      .hero-anniversary { display: block; width: 205px; height: auto; margin-bottom: 18px; }
+      h1 {
+        max-width: 12ch;
+        margin: 0 0 22px;
+        color: #fffefa;
+        font-family: var(--serif);
+        font-size: 44px;
+        font-weight: 600;
+        letter-spacing: -0.055em;
+        line-height: 1.25;
+      }
+      h1 em { color: var(--yellow); font-style: normal; }
+      .hero-description {
+        max-width: 37rem;
+        margin-bottom: 30px;
+        color: #c5c4be;
+        font-size: 16px;
+        line-height: 1.65;
+      }
+      .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+      .button {
+        display: inline-flex;
+        min-height: 50px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 22px;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        background: var(--yellow);
+        color: #161616;
+        font-size: 16px;
+        font-weight: 700;
+        transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+      .button:hover { background: #ffda45; box-shadow: 0 10px 30px rgba(255, 200, 0, 0.18); transform: translateY(-2px); }
+      .button:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+      .hero-offer { margin: 16px 0 0; color: #b9b8b2; font-size: 14px; line-height: 1.6; }
+      .hero-offer s { color: #82817c; }
+      .hero-offer strong { color: var(--yellow); font-weight: 700; }
+      .hero-mobile-visual {
+        position: relative;
+        isolation: isolate;
+        display: block;
+        width: min(260px, 75vw);
+        margin: 22px auto 18px;
+      }
+      .hero-mobile-visual::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+        width: 78%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 229, 102, .86) 0, rgba(255, 200, 0, .52) 34%, rgba(255, 139, 42, .24) 58%, transparent 72%);
+        content: "";
+        filter: blur(28px);
+        transform: translate(-50%, -50%);
+        animation: glow-pulse 4s ease-in-out infinite alternate;
+      }
+      .hero-mobile-visual img { display: block; width: 100%; height: auto; filter: drop-shadow(0 22px 22px rgba(0, 0, 0, .48)); }
+      .hero-visual {
+        position: relative;
+        display: none;
+        min-height: 190px;
+        margin: 16px -20px -20px 0;
+        isolation: isolate;
+      }
+      .hero-visual::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+        width: 82%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg, transparent 0deg 40deg, rgba(255, 200, 0, .95) 90deg, rgba(255, 139, 42, .8) 145deg, transparent 215deg, rgba(255, 213, 71, .7) 275deg, transparent 330deg);
+        content: "";
+        filter: blur(36px);
+        opacity: .7;
+        transform: translate(-50%, -50%);
+        animation: circling-glow 11s linear infinite;
+      }
+      .hero-visual::after {
+        position: absolute;
+        right: 10%;
+        top: 50%;
+        z-index: -1;
+        width: 62%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(circle at 32% 30%, #fff1a6 0, #ffdc4d 22%, var(--yellow) 46%, var(--orange) 70%, transparent 73%);
+        box-shadow: 0 0 120px 40px rgba(255, 200, 0, 0.16);
+        content: "";
+        filter: blur(34px);
+        opacity: 0.78;
+        transform: translateY(-50%);
+        animation: glow-pulse 4s ease-in-out infinite alternate;
+      }
+      .hero-visual img {
+        position: absolute;
+        right: -10px;
+        top: 50%;
+        width: min(430px, 100vw);
+        height: auto;
+        filter: drop-shadow(0 32px 34px rgba(0, 0, 0, 0.65));
+        transform: translateY(-50%);
+      }
+
+      .pricing { padding: 90px 0 100px; }
+      .section-head { display: grid; gap: 18px; margin-bottom: 38px; }
+      .section-head h2, .benefit-copy h2 {
+        max-width: 16ch;
+        margin-bottom: 0;
+        color: #fffefa;
+        font-family: var(--serif);
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: -0.045em;
+        line-height: 1.2;
+      }
+      .section-intro { max-width: 30rem; margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+      .plans { display: grid; gap: 13px; }
+      .plan {
+        position: relative;
+        display: flex;
+        min-height: 360px;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: linear-gradient(140deg, #1d1d1d, #121212 78%);
+        transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+      }
+      .plan.featured {
+        isolation: isolate;
+        overflow: hidden;
+        border-color: var(--yellow);
+        background:
+          radial-gradient(circle at 100% 0, rgba(255, 200, 0, 0.28), transparent 15rem),
+          linear-gradient(140deg, #26221a, #151515 75%);
+        box-shadow: 0 28px 60px rgba(0,0,0,.25);
+      }
+      .plan.featured::before {
+        position: absolute;
+        inset: -80%;
+        z-index: -1;
+        border-radius: 50%;
+        background: conic-gradient(from 30deg, transparent 0deg 45deg, rgba(255, 219, 72, .38) 90deg, rgba(255, 139, 42, .2) 145deg, transparent 200deg 260deg, rgba(255, 200, 0, .24) 310deg, transparent 360deg);
+        content: "";
+        filter: blur(28px);
+        opacity: .62;
+        animation: anniversary-halo 16s linear infinite;
+      }
+      .plan.featured:hover {
+        border-color: #ffe372;
+        box-shadow: 0 34px 72px rgba(255, 190, 0, .18), 0 24px 48px rgba(0, 0, 0, .3);
+        transform: translateY(-6px);
+      }
+      .plan.featured > div { position: relative; z-index: 2; }
+      .plan.featured .plan-badge { z-index: 3; }
+      .plan-sparkle {
+        position: absolute;
+        z-index: 1;
+        color: #fff1a2;
+        font-size: 18px;
+        line-height: 1;
+        opacity: .78;
+        pointer-events: none;
+        text-shadow: 0 0 13px rgba(255, 211, 61, .95);
+      }
+      .plan-sparkle-one { top: 17%; right: 17%; animation: sparkle-float-one 4.8s ease-in-out infinite; }
+      .plan-sparkle-two { top: 45%; right: 8%; font-size: 12px; animation: sparkle-float-two 5.6s ease-in-out infinite; }
+      .plan-sparkle-three { bottom: 20%; left: 9%; font-size: 14px; animation: sparkle-float-three 5.2s ease-in-out infinite; }
+      .plan-badge {
+        position: absolute;
+        top: -1px;
+        right: 20px;
+        padding: 8px 12px;
+        border-radius: 0 0 12px 12px;
+        background: var(--yellow);
+        color: #1b1b1b;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .plan-name { margin-bottom: 15px; color: #d9d8d2; font-size: 14px; font-weight: 600; }
+      .price {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        margin: 0;
+        color: #fffefa;
+        font-family: var(--serif);
+        font-size: 48px;
+        font-weight: 500;
+        letter-spacing: -0.065em;
+        line-height: 0.95;
+      }
+      .price span { color: #c9c8c2; font-family: var(--sans); font-size: 14px; font-weight: 500; letter-spacing: 0; }
+      .price-note { min-height: 22px; margin: 12px 0 0; color: #a6a59f; font-size: 14px; line-height: 1.45; }
+      .plan-divider { height: 1px; margin: 31px 0 22px; background: var(--line); }
+      .plan-description { width: fit-content; max-width: 100%; margin: 0; color: #c6c5c0; font-size: 16px; line-height: 1.55; }
+      .plan-footer { margin-top: 28px; }
+      .plan .button { width: 100%; }
+      .button.outline { border-color: rgba(255,255,255,.36); background: transparent; color: #fffefa; }
+      .button.outline:hover { border-color: white; background: #fffefa; box-shadow: none; color: #171717; }
+      .cancel-note { margin: 11px 0 0; color: #96958f; font-size: 12px; text-align: center; }
+
+      .benefits {
+        position: relative;
+        padding: 85px 0 92px;
+        border-top: 1px solid var(--line);
+        background: #111;
+      }
+      .benefits::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--orange), transparent);
+        content: "";
+        opacity: .8;
+      }
+      .benefit-layout { display: grid; align-items: center; gap: 30px; }
+      .benefit-copy h2 { margin: 18px 0 25px; }
+      .benefit-copy > p:last-of-type { max-width: 34rem; color: var(--muted); font-size: 16px; line-height: 1.65; }
+      .benefit-list { display: grid; gap: 0; margin: 32px 0 0; padding: 0; list-style: none; }
+      .benefit-list li {
+        display: grid;
+        grid-template-columns: 25px 1fr;
+        gap: 10px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        color: #dfded9;
+        font-size: 16px;
+        line-height: 1.4;
+      }
+      .checkmark { color: var(--yellow); font-size: 16px; line-height: 1.15; }
+      .benefit-visual { position: relative; min-height: 300px; }
+      .benefit-visual::before {
+        position: absolute;
+        top: 17%;
+        right: 6%;
+        width: 65%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--orange);
+        content: "";
+        filter: blur(70px);
+        opacity: .25;
+      }
+      .benefit-visual img { position: absolute; right: -12px; bottom: -55px; width: min(360px, 85vw); height: auto; }
+
+      .faq { padding: 0 0 34px; background: #111; }
+      .faq-wrap { padding: 80px 0 0; border-top: 1px solid var(--line); }
+      .faq-head { display: grid; gap: 16px; margin-bottom: 32px; }
+      .faq h2, .contact-heading {
+        max-width: 14ch;
+        margin-bottom: 0;
+        color: #fffefa;
+        font-family: var(--serif);
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: -0.045em;
+        line-height: 1.2;
+      }
+      .faq-intro { max-width: 30rem; margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+      .faq-list { border-top: 1px solid var(--line); }
+      .faq-list details { border-bottom: 1px solid var(--line); }
+      .faq-list summary {
+        display: grid;
+        grid-template-columns: 1fr 24px;
+        gap: 16px;
+        align-items: center;
+        padding: 20px 0;
+        color: #f0efea;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.45;
+        list-style: none;
+      }
+      .faq-list summary::-webkit-details-marker { display: none; }
+      .faq-icon { color: var(--yellow); font-size: 20px; line-height: 1; transition: transform 180ms ease; }
+      .faq-list details[open] .faq-icon { transform: rotate(45deg); }
+      .faq-answer { max-width: 52rem; padding: 0 40px 22px 0; color: #bbb9b3; font-size: 16px; line-height: 1.7; }
+      .faq-answer p:last-child, .faq-answer ul:last-child, .faq-answer ol:last-child { margin-bottom: 0; }
+      .faq-answer ul, .faq-answer ol { display: grid; gap: 8px; margin: 0 0 18px; padding-left: 22px; }
+      .faq-answer a { color: var(--yellow); text-decoration: underline; text-decoration-color: rgba(255, 200, 0, .45); text-underline-offset: 3px; }
+
+      .contact { padding: 72px 0 96px; background: #111; }
+      .contact-heading { margin-bottom: 26px; }
+      .contact-card { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #181818; }
+      .contact-intro, .contact-method { padding: 26px; }
+      .contact-intro { border-bottom: 1px solid var(--line); background: #242424; }
+      .contact-title { margin-bottom: 8px; color: #fffefa; font-size: 22px; font-weight: 600; }
+      .contact-hours { margin-bottom: 0; color: #aaa8a2; font-size: 16px; line-height: 1.5; }
+      .contact-method { display: block; border-bottom: 1px solid var(--line); transition: background 180ms ease; }
+      .contact-method:last-child { border-bottom: 0; }
+      .contact-method:hover { background: #202020; }
+      .contact-label { display: block; margin-bottom: 7px; color: #aaa8a2; font-size: 14px; }
+      .contact-value { color: var(--yellow); font-size: 16px; font-weight: 600; line-height: 1.2; }
+
+      .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .benefit-list li, .faq-intro, .faq-list summary, .faq-answer, .contact-hours { font-size: 14px; }
+
+      @media (max-width: 1279px) {
+        .hero-copy, .section-head, .benefit-copy, .faq-head, .contact { text-align: center; }
+        .hero-anniversary, .section-head h2, .benefit-copy h2, .faq h2, .contact-heading, .section-intro, .benefit-copy > p:last-of-type, .faq-intro { margin-inline: auto; }
+        .hero-actions, .price { justify-content: center; }
+        .hero-visual img { right: 50%; transform: translate(50%, -50%); }
+        .hero-visual::after { right: 50%; transform: translate(50%, -50%); }
+        .benefit-list { max-width: 540px; margin-inline: auto; text-align: left; }
+        .plan { text-align: center; }
+        .plan-description { margin-inline: auto; }
+        .faq-list summary, .faq-answer { text-align: center; }
+        .contact-intro, .contact-method { text-align: center; }
+      }
+
+      @media (max-width: 767px) {
+        h1 { max-width: none; font-size: 34px; white-space: nowrap; }
+      }
+
+      @media (min-width: 620px) {
+        .section-head { grid-template-columns: minmax(0, 1.15fr) minmax(220px, .7fr); align-items: end; }
+        .faq-head { grid-template-columns: minmax(0, 1.15fr) minmax(220px, .7fr); align-items: end; }
+        .plans { grid-template-columns: 1fr 1.12fr; }
+        .plan { padding: 33px; }
+        .contact-card { display: grid; grid-template-columns: .96fr 1fr 1fr; }
+        .contact-intro, .contact-method { border-right: 1px solid var(--line); border-bottom: 0; }
+        .contact-method:last-child { border-right: 0; }
+      }
+      @keyframes circling-glow {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      @keyframes glow-pulse {
+        from { opacity: .52; scale: .88; }
+        to { opacity: .88; scale: 1.08; }
+      }
+      @keyframes anniversary-halo {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes sparkle-float-one {
+        0%, 100% { opacity: .22; transform: translateY(8px) rotate(0deg) scale(.72); }
+        50% { opacity: 1; transform: translateY(-5px) rotate(18deg) scale(1); }
+      }
+      @keyframes sparkle-float-two {
+        0%, 100% { opacity: .16; transform: translate(-3px, 4px) scale(.65); }
+        45% { opacity: .92; transform: translate(3px, -5px) scale(1); }
+      }
+      @keyframes sparkle-float-three {
+        0%, 100% { opacity: .2; transform: translateY(-2px) rotate(12deg) scale(.7); }
+        55% { opacity: .9; transform: translateY(7px) rotate(-12deg) scale(1); }
+      }
+
+      @media (min-width: 768px) {
+        body { font-size: 16px; }
+        .wrap, .hero-content { width: calc(100% - 48px); }
+        .hero-mobile-visual { display: none; }
+        .hero-visual { display: block; }
+        .faq .wrap, .contact .wrap { width: calc(100% - 96px); max-width: 800px; }
+        .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .benefit-list li, .faq-intro, .faq-list summary, .faq-answer, .contact-hours { font-size: 16px; }
+        h1 { font-size: 50px; }
+        .section-head h2, .benefit-copy h2 { font-size: 38px; }
+        .faq h2, .contact-heading { font-size: 38px; }
+        .price { font-size: 52px; }
+        .hero-content { padding: 108px 0; }
+        .hero-visual { min-height: 280px; margin: 0 -24px -28px 0; }
+        .hero-visual img { width: min(560px, 72vw); }
+        .benefit-visual { min-height: 370px; }
+        .benefit-visual img { right: -24px; bottom: -64px; width: min(410px, 50vw); }
+      }
+      @media (min-width: 1280px) {
+        .wrap, .hero-content { width: calc(100% - 370px); }
+        .faq .wrap, .contact .wrap { width: calc(100% - 370px); max-width: 860px; }
+        .hero { min-height: 0; }
+        h1 { max-width: none; font-size: 56px; }
+        .section-head h2, .benefit-copy h2 { max-width: none; font-size: 40px; }
+        .benefit-copy h2 .benefit-line { display: block; }
+        .faq h2, .contact-heading { font-size: 40px; }
+        .contact-heading { max-width: none; white-space: nowrap; }
+        .price { font-size: 56px; }
+        .contact-value { font-size: 18px; }
+        .hero-content { grid-template-columns: .98fr 1.02fr; gap: 12px; padding: 108px 0; }
+        .hero-visual { min-height: 380px; margin: -10px -80px -24px -60px; }
+        .hero-visual img { right: -12px; width: min(620px, 49vw); }
+        .benefit-layout { grid-template-columns: minmax(0, 1fr) minmax(330px, .7fr); gap: 60px; }
+        .benefit-visual { min-height: 440px; }
+        .benefit-visual img { right: -36px; bottom: -64px; width: min(455px, 39vw); }
+      }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button, .plan { transition: none; } .hero-visual::before, .hero-visual::after, .plan.featured::before, .plan-sparkle { animation: none; } }
+    </style>
   </head>
   <body>
-    <!-- Header existing sengaja tidak dirender. Developer akan menambahkannya manual. -->
-
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div
-          class="hero__motion"
-          data-lottie-src="./assets/31-motion-placeholder.lottie.json"
-          role="img"
-          aria-label="Animasi angka 31 untuk perayaan ulang tahun Kompas.com"
-        >
-          <!-- TODO: Ganti placeholder Lottie dan fallback ini dengan motion asset final campaign. -->
-          <img
-            class="hero__motion-image"
-            src="./assets/31-logogram-yellow.png"
-            alt=""
-            width="1412"
-            height="1051"
-            fetchpriority="high"
-          />
-        </div>
-
-        <div class="hero__glow" aria-hidden="true"></div>
-
-        <div class="hero__content">
-          <div class="hero__logo-crop">
-            <img
-              src="./assets/31-kompas-light.png"
-              alt="Kompas.com — Jernih Melihat Dunia"
-              width="3243"
-              height="561"
-            />
+    <div class="page-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-content" id="top">
+          <div class="hero-copy">
+            <img class="hero-anniversary" src="Assets/31KompasLight.png" alt="31 tahun Kompas.com" />
+            <h1 id="page-title">Anniversary Sale<br /><em>Jernih Berdampak</em></h1>
+            <p class="hero-description">Selama 31 tahun, Kompas.com menemani Indonesia memahami dunia. Rayakan bersama kami lewat akses terbaik ke konten yang lebih utuh, lebih dalam, dan tanpa batas.</p>
+            <div class="hero-mobile-visual" aria-hidden="true">
+              <img src="Assets/MAXMobile.png" alt="" />
+            </div>
+            <div class="hero-actions">
+              <a class="button" href="#harga">Lihat Harga Spesial</a>
+            </div>
+            <p class="hero-offer"><s>Rp29.000</s> <strong>Rp25.000</strong> untuk 1 bulan atau <s>Rp139.000</s> <strong>Rp131.000</strong> untuk 1 tahun.</p>
           </div>
-
-          <h1 id="hero-title" class="hero__title">
-            <span>Anniversary Sale.</span>
-            <span>Jernih Berdampak.</span>
-          </h1>
+          <div class="hero-visual" aria-hidden="true">
+            <img src="Assets/BannerMAX.png" alt="" />
+          </div>
         </div>
       </section>
 
-      <section class="sale" aria-labelledby="sale-title">
-        <div class="sale__container">
-          <h2 id="sale-title" class="sale__eyebrow">SPECIAL ANNIVERSARY SALE</h2>
-
-          <div class="pricing" aria-label="Pilihan Membership Premium">
-            <article class="price-card price-card--annual">
-              <span class="price-card__badge">Best Value</span>
-              <h3>Membership Premium Tahunan</h3>
-              <p class="price-card__price">
-                <span>Rp131.000</span><small>/tahun</small>
-              </p>
-              <p class="price-card__subprice">atau setara Rp10.917/bulan</p>
-            </article>
-
-            <article class="price-card price-card--monthly">
-              <h3>Membership Premium Bulanan</h3>
-              <p class="price-card__price">
-                <span>Rp25.000</span><small>/bulan</small>
-              </p>
-            </article>
+      <main>
+        <section class="benefits" aria-labelledby="benefit-title">
+          <div class="wrap benefit-layout">
+            <div class="benefit-copy">
+              <h2 id="benefit-title"><span class="benefit-line">Akses Semua</span> <span class="benefit-line">Keuntungan Membership</span></h2>
+              <p>Satu membership untuk membaca lebih nyaman, mengikuti cerita pilihan, dan menemukan lebih banyak hal yang penting bagi Anda.</p>
+              <ul class="benefit-list">
+                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Tanpa iklan, load lebih cepat</span></li>
+                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Artikel utuh dalam 1 halaman</span></li>
+                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Akses konten orisinal tanpa batas</span></li>
+                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Podcast eksklusif MorningBrief</span></li>
+                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Newsletter eksklusif penuh insight</span></li>
+                <li><i class="ph-bold ph-check-circle checkmark" aria-hidden="true"></i><span>Akses game Croz/Word tanpa batas</span></li>
+              </ul>
+            </div>
+            <div class="benefit-visual" aria-hidden="true">
+              <img src="Assets/MAXFeatures.png" alt="" />
+            </div>
           </div>
+        </section>
 
-          <div class="sale__action">
-            <a
-              class="cta"
-              href="https://plus.kompas.com/"
-              aria-label="Gabung Membership Kompas.com PLUS"
-            >
-              Gabung Membership
-              <svg viewBox="0 0 20 20" aria-hidden="true">
-                <path d="M4 10h11M11 5l5 5-5 5" />
-              </svg>
-            </a>
-            <p>Batalkan kapanpun</p>
+        <section class="pricing" id="harga" aria-labelledby="pricing-title">
+          <div class="wrap">
+            <div class="section-head">
+              <div>
+                <h2 id="pricing-title">Special<br />Anniversary Sale</h2>
+              </div>
+              <p class="section-intro">Dua pilihan sederhana untuk menikmati seluruh pengalaman Kompas.com PLUS MAX—dengan harga spesial perayaan 31 tahun.</p>
+            </div>
+
+            <div class="plans">
+              <article class="plan" aria-labelledby="monthly-title">
+                <div>
+                  <p class="plan-name" id="monthly-title">PLUS MAX Bulanan</p>
+                  <p class="price">Rp25.000 <span>/ bulan</span></p>
+                  <p class="price-note">Fleksibel untuk menikmati pengalaman MAX.</p>
+                  <div class="plan-divider"></div>
+                  <p class="plan-description">Akses penuh seluruh benefit PLUS MAX, ditagihkan setiap bulan.</p>
+                </div>
+                <div class="plan-footer">
+                  <a class="button outline" href="https://plus.kompas.com" target="_blank" rel="noreferrer">Gabung Membership</a>
+                  <p class="cancel-note">Batalkan kapanpun</p>
+                </div>
+              </article>
+
+              <article class="plan featured" aria-labelledby="annual-title">
+                <span class="plan-badge">Best Value</span>
+                <i class="ph-fill ph-sparkle plan-sparkle plan-sparkle-one" aria-hidden="true"></i>
+                <i class="ph-fill ph-sparkle plan-sparkle plan-sparkle-two" aria-hidden="true"></i>
+                <i class="ph-fill ph-sparkle plan-sparkle plan-sparkle-three" aria-hidden="true"></i>
+                <div>
+                  <p class="plan-name" id="annual-title">PLUS MAX Tahunan</p>
+                  <p class="price">Rp131.000 <span>/ tahun</span></p>
+                  <p class="price-note">Setara Rp10.917 / bulan</p>
+                  <div class="plan-divider"></div>
+                  <p class="plan-description">Pilih setahun penuh untuk menikmati bacaan berkualitas dengan nilai terbaik.</p>
+                </div>
+                <div class="plan-footer">
+                  <a class="button" href="https://plus.kompas.com/package?product=web.kcmplus.max.specialhut31.yearly" target="_blank" rel="noreferrer">Gabung Membership</a>
+                  <p class="cancel-note">Batalkan kapanpun</p>
+                </div>
+              </article>
+            </div>
           </div>
+        </section>
 
-          <ul class="benefits" aria-label="Benefit Membership Premium">
-            <li><span class="check" aria-hidden="true">✓</span>Tanpa iklan, load lebih cepat</li>
-            <li><span class="check" aria-hidden="true">✓</span>Artikel utuh dalam 1 halaman</li>
-            <li><span class="check" aria-hidden="true">✓</span>Akses konten orisinal tanpa batas</li>
-            <li><span class="check" aria-hidden="true">✓</span>Podcast eksklusif MorningBrief</li>
-            <li><span class="check" aria-hidden="true">✓</span>Newsletter eksklusif penuh insight</li>
-            <li><span class="check" aria-hidden="true">✓</span>Akses game Croz/Word tanpa batas</li>
-          </ul>
-        </div>
-      </section>
-    </main>
+        <section class="faq" id="faq" aria-labelledby="faq-title">
+          <div class="wrap faq-wrap">
+            <div class="faq-head">
+              <h2 id="faq-title">Pertanyaan yang sering ditanyakan.</h2>
+              <p class="faq-intro">Temukan informasi singkat seputar membership Kompas.com+ dan cara bergabung.</p>
+            </div>
 
-    <!-- Footer existing sengaja tidak dirender. Developer akan menambahkannya manual. -->
+            <div class="faq-list">
+              <details>
+                <summary>Apa itu Kompas.com+?<i class="ph-bold ph-plus faq-icon" aria-hidden="true"></i></summary>
+                <div class="faq-answer"><p>Kompas.com+ adalah layanan berbayar untuk pembaca setia Kompas.com yang ingin menikmati berbagai benefit pada web Kompas.com (PC dan mobile) serta aplikasi Android dan iOS. Membership dapat diakses melalui maksimal lima perangkat berbeda—pastikan Anda login menggunakan Akun KG Media ID yang sama dengan saat melakukan transaksi.</p></div>
+              </details>
+              <details>
+                <summary>Apa saja benefit yang didapatkan?<i class="ph-bold ph-plus faq-icon" aria-hidden="true"></i></summary>
+                <div class="faq-answer"><p>Pelanggan Kompas.com+ mendapatkan akses Kompas.com tanpa iklan, tanpa paginasi di halaman baca, serta berbagai benefit lain sesuai paket membership yang dipilih. Benefit dapat ditambahkan di kemudian hari.</p></div>
+              </details>
+              <details>
+                <summary>Bagaimana cara bergabung dengan membership Kompas.com+?<i class="ph-bold ph-plus faq-icon" aria-hidden="true"></i></summary>
+                <div class="faq-answer">
+                  <p>Anda dapat bergabung melalui aplikasi Kompas.com Android dan iOS, atau melakukan transaksi di <a href="https://plus.kompas.com" target="_blank" rel="noreferrer">plus.kompas.com</a>.</p>
+                  <p>Melalui aplikasi Kompas.com:</p>
+                  <ol><li>Tekan banner Kompas.com+ di Home atau pilih Gabung Kompas.com+ dari Pengaturan.</li><li>Pilih paket yang diinginkan, lalu tekan Gabung.</li><li>Ikuti petunjuk pembayaran yang terdapat pada layar.</li></ol>
+                  <p>Melalui website Kompas.com:</p>
+                  <ol><li>Buka <a href="https://plus.kompas.com" target="_blank" rel="noreferrer">plus.kompas.com</a> melalui browser.</li><li>Klik tombol Subscribe with Google.</li><li>Klik paket yang diinginkan.</li><li>Ikuti petunjuk pembayaran yang terdapat pada layar.</li></ol>
+                </div>
+              </details>
+              <details>
+                <summary>Metode pembayaran apa yang tersedia?<i class="ph-bold ph-plus faq-icon" aria-hidden="true"></i></summary>
+                <div class="faq-answer"><ul><li><strong>Aplikasi Android Kompas.com:</strong> Kartu Kredit, Pulsa, Tagihan Pascabayar, GoPay, OVO, ShopeePay, DANA, minimarket, dan Credit Google Play.</li><li><strong>Aplikasi iOS Kompas.com:</strong> Kartu Kredit, GoPay, dan DANA.</li><li><strong>Website plus.kompas.com:</strong> Kartu Kredit/Debit.</li></ul></div>
+              </details>
+              <details>
+                <summary>Apakah membership dapat dibayar melalui Bank Transfer?<i class="ph-bold ph-plus faq-icon" aria-hidden="true"></i></summary>
+                <div class="faq-answer"><p>Saat ini metode pembayaran dengan Bank Transfer belum tersedia di Kompas.com+.</p></div>
+              </details>
+              <details>
+                <summary>Apakah saya dapat mengubah paket atau berhenti dari membership?<i class="ph-bold ph-plus faq-icon" aria-hidden="true"></i></summary>
+                <div class="faq-answer"><p>Anda dapat berhenti dari membership atau mengganti paket kapanpun. Untuk mengatur subscription, akses <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noreferrer">Akun Google Play</a> atau <a href="https://myaccount.google.com/subscriptions" target="_blank" rel="noreferrer">Google Subscriptions</a> jika menggunakan Subscribe with Google. Pengguna iOS dapat mengakses <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noreferrer">Apple Subscriptions</a>.</p></div>
+              </details>
+              <details>
+                <summary>Bagaimana jika saya menemukan kendala atau memiliki pertanyaan lain?<i class="ph-bold ph-plus faq-icon" aria-hidden="true"></i></summary>
+                <div class="faq-answer"><p>Hubungi kami melalui email <a href="mailto:cs@kompas.com">cs@kompas.com</a> atau WhatsApp <a href="https://wa.me/6281220113212" target="_blank" rel="noreferrer">081220113212</a>.</p></div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <section class="contact" id="contact" aria-labelledby="contact-title">
+          <div class="wrap">
+            <h2 class="contact-heading" id="contact-title">Kami siap membantu.</h2>
+            <div class="contact-card">
+              <div class="contact-intro">
+                <p class="contact-title">Hubungi kami</p>
+                <p class="contact-hours">Senin – Jumat, 09.00 – 18.00 WIB</p>
+              </div>
+              <a class="contact-method" href="mailto:cs@kompas.com">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">cs@kompas.com</span>
+              </a>
+              <a class="contact-method" href="https://wa.me/6281220113212" target="_blank" rel="noreferrer">
+                <span class="contact-label">WhatsApp</span>
+                <span class="contact-value">+62 812 2011 3212</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
