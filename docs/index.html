@@ -397,11 +397,14 @@
         .contact-intro, .contact-method { text-align: center; }
       }
 
-      @media (max-width: 767px) {
+      @media (max-width: 1279px) {
         h1 { max-width: none; font-size: 34px; white-space: nowrap; }
+        .faq-list summary { grid-template-columns: 24px minmax(0, 1fr) 24px; gap: 8px; }
+        .faq-list summary::before { width: 24px; height: 1px; content: ""; }
+        .faq-answer { width: min(100%, 34rem); margin-inline: auto; padding: 0 0 22px; }
       }
 
-      @media (min-width: 620px) {
+      @media (min-width: 1280px) {
         .section-head { grid-template-columns: minmax(0, 1.15fr) minmax(220px, .7fr); align-items: end; }
         .faq-head { grid-template-columns: minmax(0, 1.15fr) minmax(220px, .7fr); align-items: end; }
         .plans { grid-template-columns: 1fr 1.12fr; }
@@ -435,27 +438,13 @@
         55% { opacity: .9; transform: translateY(7px) rotate(-12deg) scale(1); }
       }
 
-      @media (min-width: 768px) {
-        body { font-size: 16px; }
-        .wrap, .hero-content { width: calc(100% - 48px); }
-        .hero-mobile-visual { display: none; }
-        .hero-visual { display: block; }
-        .faq .wrap, .contact .wrap { width: calc(100% - 96px); max-width: 800px; }
-        .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .benefit-list li, .faq-intro, .faq-list summary, .faq-answer, .contact-hours { font-size: 16px; }
-        h1 { font-size: 50px; }
-        .section-head h2, .benefit-copy h2 { font-size: 38px; }
-        .faq h2, .contact-heading { font-size: 38px; }
-        .price { font-size: 52px; }
-        .hero-content { padding: 108px 0; }
-        .hero-visual { min-height: 280px; margin: 0 -24px -28px 0; }
-        .hero-visual img { width: min(560px, 72vw); }
-        .benefit-visual { min-height: 370px; }
-        .benefit-visual img { right: -24px; bottom: -64px; width: min(410px, 50vw); }
-      }
       @media (min-width: 1280px) {
+        body { font-size: 16px; }
         .wrap, .hero-content { width: calc(100% - 370px); }
         .faq .wrap, .contact .wrap { width: calc(100% - 370px); max-width: 860px; }
+        .hero-mobile-visual { display: none; }
         .hero { min-height: 0; }
+        .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .benefit-list li, .faq-intro, .faq-list summary, .faq-answer, .contact-hours { font-size: 16px; }
         h1 { max-width: none; font-size: 56px; }
         .section-head h2, .benefit-copy h2 { max-width: none; font-size: 40px; }
         .benefit-copy h2 .benefit-line { display: block; }
@@ -464,7 +453,7 @@
         .price { font-size: 56px; }
         .contact-value { font-size: 18px; }
         .hero-content { grid-template-columns: .98fr 1.02fr; gap: 12px; padding: 108px 0; }
-        .hero-visual { min-height: 380px; margin: -10px -80px -24px -60px; }
+        .hero-visual { display: block; min-height: 380px; margin: -10px -80px -24px -60px; }
         .hero-visual img { right: -12px; width: min(620px, 49vw); }
         .benefit-layout { grid-template-columns: minmax(0, 1fr) minmax(330px, .7fr); gap: 60px; }
         .benefit-visual { min-height: 440px; }
