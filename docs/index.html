@@ -97,7 +97,9 @@
       .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
       .button {
         display: inline-flex;
-        min-height: 50px;
+        height: 48px;
+        min-height: 48px;
+        max-height: 48px;
         align-items: center;
         justify-content: center;
         padding: 0 22px;
@@ -106,7 +108,7 @@
         background: var(--yellow);
         color: #161616;
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 600;
         transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
       }
       .button:hover { background: #ffda45; box-shadow: 0 10px 30px rgba(255, 200, 0, 0.18); transform: translateY(-2px); }
@@ -305,7 +307,8 @@
       .benefit-layout { max-width: 1080px; }
       .benefit-copy h2 { max-width: 18ch; margin: 0 0 28px; }
       .benefit-copy > p:last-of-type { width: 100%; max-width: none; margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
-      .benefit-copy > p:last-of-type strong { color: #fffefa; font-weight: 500; }
+      .benefit-copy > p:last-of-type strong { color: #fffefa; font-weight: 600; }
+      .benefit-support { display: block; }
 
       .faq { padding: 0 0 34px; background: #111; }
       .faq-wrap { padding: 80px 0 0; border-top: 1px solid var(--line); }
@@ -320,7 +323,6 @@
         letter-spacing: -0.045em;
         line-height: 1.2;
       }
-      .faq-intro { max-width: 30rem; margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
       .faq-list { border-top: 1px solid var(--line); }
       .faq-list details { border-bottom: 1px solid var(--line); }
       .faq-list summary {
@@ -344,22 +346,27 @@
       .faq-answer ul, .faq-answer ol { display: grid; gap: 8px; margin: 0 0 18px; padding-left: 22px; }
       .faq-answer a { color: var(--yellow); text-decoration: underline; text-decoration-color: rgba(255, 200, 0, .45); text-underline-offset: 3px; }
 
-      .journalism { padding: 88px 0; background: #fff; color: #171717; }
-      .journalism-wrap { max-width: 1000px; }
+      .journalism { padding: 88px 0; background: #fff; color: #171717; text-align: center; }
+      .faq .wrap, .contact .wrap, .journalism .wrap { max-width: 740px; }
+      .journalism-wrap { max-width: none; }
       .journalism h2 {
-        max-width: 16ch;
-        margin: 0 0 28px;
+        max-width: none;
+        margin: 0 auto 28px;
         color: #171717;
         font-family: var(--serif);
         font-size: 36px;
         font-weight: 500;
         letter-spacing: -0.045em;
         line-height: 1.2;
+        text-align: left;
       }
-      .journalism-copy { max-width: 42rem; }
-      .journalism-copy p { margin: 0 0 18px; color: #5f5f5b; font-size: 14px; line-height: 1.7; }
+      .journalism-copy { max-width: none; margin-inline: auto; text-align: left; }
+      .journalism-copy p { margin: 0 0 18px; color: #5f5f5b; font-size: 14px; line-height: 1.7; text-align: left; }
+      .journalism-copy p:last-of-type { margin-bottom: 0; }
       .journalism-copy strong { color: #202020; font-weight: 600; }
-      .journalism .button { margin-top: 10px; }
+      .journalism .button { display: flex; width: fit-content; margin: 32px auto 0; }
+      .journalism h2 span { display: block; }
+      @media (min-width: 600px) { .journalism h2 span { white-space: nowrap; } }
 
       .contact { padding: 72px 0 96px; background: #111; }
       .contact-heading { margin-bottom: 26px; }
@@ -374,11 +381,11 @@
       .contact-label { display: block; margin-bottom: 7px; color: #aaa8a2; font-size: 14px; }
       .contact-value { color: var(--yellow); font-size: 16px; font-weight: 600; line-height: 1.2; }
 
-      .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .faq-intro, .faq-list summary, .faq-answer, .contact-hours { font-size: 14px; }
+      .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .faq-list summary, .faq-answer, .contact-hours { font-size: 14px; }
 
       @media (max-width: 1279px) {
         .hero-copy, .section-head, .benefit-copy, .faq-head, .journalism, .contact { text-align: center; }
-        .hero-anniversary, .section-head h2, .benefit-copy h2, .faq h2, .journalism h2, .contact-heading, .section-intro, .benefit-copy > p:last-of-type, .faq-intro, .journalism-copy { margin-inline: auto; }
+        .hero-anniversary, .section-head h2, .benefit-copy h2, .faq h2, .journalism h2, .contact-heading, .section-intro, .benefit-copy > p:last-of-type, .journalism-copy { margin-inline: auto; }
         .hero-actions, .price { justify-content: center; }
         .hero-visual img { right: 50%; transform: translate(50%, -50%); }
         .hero-visual::after { right: 50%; transform: translate(50%, -50%); }
@@ -397,7 +404,6 @@
 
       @media (min-width: 1280px) {
         .section-head { grid-template-columns: minmax(0, 1.15fr) minmax(220px, .7fr); align-items: end; }
-        .faq-head { grid-template-columns: minmax(0, 1.15fr) minmax(220px, .7fr); align-items: end; }
         .plans { grid-template-columns: 1fr 1.12fr; }
         .plan { padding: 33px; }
         .contact-card { display: grid; grid-template-columns: .96fr 1fr 1fr; }
@@ -432,10 +438,10 @@
       @media (min-width: 1280px) {
         body { font-size: 16px; }
         .wrap, .hero-content { width: calc(100% - 370px); }
-        .faq .wrap, .contact .wrap { width: calc(100% - 370px); max-width: 860px; }
+        .faq .wrap, .contact .wrap, .journalism .wrap { width: calc(100% - 370px); max-width: 740px; }
         .hero-mobile-visual { display: none; }
         .hero { min-height: 0; }
-        .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .faq-intro, .faq-list summary, .faq-answer, .contact-hours, .journalism-copy p { font-size: 16px; }
+        .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .faq-list summary, .faq-answer, .contact-hours { font-size: 16px; }
         h1 { max-width: none; font-size: 56px; }
         .section-head h2, .benefit-copy h2 { max-width: none; font-size: 40px; }
         .benefit-copy h2 .benefit-line { display: block; }
@@ -447,8 +453,8 @@
         .hero-visual { display: block; min-height: 380px; margin: -10px -80px -24px -60px; }
         .hero-visual img { right: -12px; width: min(620px, 49vw); }
         .benefit-layout { max-width: 1080px; }
-        .journalism-wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 72px; align-items: start; }
-        .journalism h2 { margin-bottom: 0; font-size: 40px; }
+        .journalism-wrap { display: block; }
+        .journalism h2 { margin: 0 auto 32px; font-size: 40px; }
       }
       @media (min-width: 600px) and (max-width: 1439px) {
         .hero-content { grid-template-columns: 1fr; gap: 0; }
@@ -491,7 +497,7 @@
           <div class="wrap benefit-layout">
             <div class="benefit-copy">
               <h2 id="benefit-title"><span class="benefit-line">Akses Semua</span> <span class="benefit-line">Keuntungan Membership</span></h2>
-              <p><strong>Akses semua keuntungan membership termasuk 1000 wawasan dan berita tepercaya bebas hoax, baca nyaman tanpa distraksi iklan, audio eksklusif morningbrief, special newsletter kurasi ruang redaksi dan podcast dan video premium.</strong> Dengan bergabung Membership, Kamu juga memberikan dukungan untuk jurnalisme jernih.</p>
+              <p><strong>Akses semua keuntungan membership termasuk 1000 wawasan dan berita tepercaya bebas hoax, baca nyaman tanpa distraksi iklan, audio eksklusif morningbrief, special newsletter kurasi ruang redaksi dan podcast dan video premium.</strong><span class="benefit-support">Dengan bergabung Membership, Kamu juga memberikan dukungan untuk jurnalisme jernih.</span></p>
             </div>
           </div>
         </section>
@@ -545,7 +551,6 @@
           <div class="wrap faq-wrap">
             <div class="faq-head">
               <h2 id="faq-title">Pertanyaan yang sering ditanyakan.</h2>
-              <p class="faq-intro">Temukan informasi singkat seputar membership Kompas.com+ dan cara bergabung.</p>
             </div>
 
             <div class="faq-list">
@@ -609,7 +614,7 @@
 
         <section class="journalism" aria-labelledby="journalism-title">
           <div class="wrap journalism-wrap">
-            <h2 id="journalism-title">Gabung membership untuk mendukung teman jurnalis</h2>
+            <h2 id="journalism-title"><span>Gabung Membership</span><span>untuk Mendukung Teman Jurnalis</span></h2>
             <div class="journalism-copy">
               <p>Jurnalisme yang berkualitas membutuhkan waktu, keahlian, dan kerja keras. Kami mengajak kamu untuk menjadi bagian dari Kompas.com.</p>
               <p>Dengan berlangganan, kamu turut mendukung para teman jurnalis, editor, dan pekerja kreatif yang bekerja menghadirkan informasi yang akurat, relevan, dan bermakna.</p>
