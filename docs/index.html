@@ -66,18 +66,37 @@
         content: "";
         pointer-events: none;
       }
-      .hero-content {
-        display: grid;
-        grid-template-columns: 1fr;
-        align-items: center;
-        gap: 18px;
-        padding: 108px 0;
+      .hero::after {
+        position: absolute;
+        inset: -24%;
+        z-index: -1;
+        background:
+          radial-gradient(circle at 28% 42%, rgba(255, 200, 0, .26), transparent 18rem),
+          radial-gradient(circle at 72% 60%, rgba(255, 139, 42, .2), transparent 20rem);
+        content: "";
+        filter: blur(22px);
+        opacity: .5;
+        pointer-events: none;
+        transform-origin: center;
+        animation: hero-gold-glow 16s ease-in-out infinite;
       }
-      .hero-copy { position: relative; z-index: 2; }
+      .hero-content {
+        max-width: 960px;
+        padding: 92px 0 96px;
+        text-align: center;
+      }
+      .hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
       h1, h2, h3, p { margin-top: 0; }
-      .hero-anniversary { display: block; width: 205px; height: auto; margin-bottom: 18px; }
+      .hero-anniversary {
+        display: block;
+        width: 205px;
+        height: auto;
+        margin: 0 auto 18px;
+        will-change: clip-path, opacity;
+        animation: anniversary-logo-mask-loop 8s ease-in-out infinite;
+      }
       h1 {
-        max-width: 12ch;
+        max-width: none;
         margin: 0 0 22px;
         color: #fffefa;
         font-family: var(--serif);
@@ -85,16 +104,17 @@
         font-weight: 600;
         letter-spacing: -0.055em;
         line-height: 1.25;
+        text-align: center;
       }
       h1 em { color: var(--yellow); font-style: normal; }
       .hero-description {
-        max-width: 37rem;
-        margin-bottom: 30px;
+        max-width: 44rem;
+        margin: 0 auto 30px;
         color: #c5c4be;
         font-size: 16px;
         line-height: 1.65;
+        text-align: center;
       }
-      .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
       .button {
         display: inline-flex;
         height: 48px;
@@ -113,70 +133,7 @@
       }
       .button:hover { background: #ffda45; box-shadow: 0 10px 30px rgba(255, 200, 0, 0.18); transform: translateY(-2px); }
       .button:focus-visible { outline: 2px solid white; outline-offset: 4px; }
-      .hero-offer { margin: 16px 0 0; color: #b9b8b2; font-size: 14px; line-height: 1.6; }
-      .hero-offer s { color: #82817c; }
-      .hero-offer strong { color: var(--yellow); font-weight: 700; }
-      .hero-mobile-visual {
-        position: relative;
-        isolation: isolate;
-        display: block;
-        width: min(260px, 75vw);
-        margin: 22px auto 18px;
-      }
-      .hero-mobile-visual::before {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        z-index: 0;
-        width: 112%;
-        aspect-ratio: 1450 / 1024;
-        background: url("Assets/31LogogramYellow.png") center / contain no-repeat;
-        content: "";
-        filter: drop-shadow(0 0 20px rgba(255, 200, 0, .5));
-        --logogram-opacity: 1;
-        opacity: 0;
-        transform: translate(-50%, -50%);
-        will-change: opacity, transform;
-        animation: hero-logogram-alternate 8s ease-in-out infinite;
-      }
-      .hero-mobile-visual img { position: relative; z-index: 1; display: block; width: 100%; height: auto; filter: drop-shadow(0 22px 22px rgba(0, 0, 0, .48)); animation: hero-mobile-mockup-mask-loop 8s ease-in-out infinite; }
-      .hero-visual {
-        position: relative;
-        display: none;
-        min-height: 190px;
-        margin: 16px -20px -20px 0;
-        isolation: isolate;
-      }
-      .hero-visual::before {
-        position: absolute;
-        top: 48%;
-        left: 63%;
-        z-index: 0;
-        width: 78%;
-        aspect-ratio: 1450 / 1024;
-        background: url("Assets/31LogogramYellow.png") center / contain no-repeat;
-        content: "";
-        filter: drop-shadow(0 0 32px rgba(255, 200, 0, .48));
-        --logogram-opacity: 1;
-        opacity: 0;
-        transform: translate(-50%, -50%);
-        will-change: opacity, transform;
-        animation: hero-logogram-alternate 8s ease-in-out infinite;
-      }
-      .hero-visual img {
-        position: absolute;
-        right: -10px;
-        top: 50%;
-        z-index: 1;
-        width: min(430px, 100vw);
-        height: auto;
-        filter: drop-shadow(0 32px 34px rgba(0, 0, 0, 0.65));
-        transform: translateY(-50%);
-        animation: hero-desktop-mockup-mask-loop 8s ease-in-out infinite;
-      }
-
-      .pricing { padding: 90px 0 100px; }
-      .section-head { display: grid; gap: 18px; margin-bottom: 38px; }
+      .hero-plans { width: 100%; max-width: 900px; margin: 8px auto 0; }
       .section-head h2, .benefit-copy h2 {
         max-width: 16ch;
         margin-bottom: 0;
@@ -188,17 +145,19 @@
         line-height: 1.2;
       }
       .section-intro { max-width: 30rem; margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
-      .plans { display: grid; gap: 13px; }
+      .plans { display: grid; gap: 16px; }
       .plan {
         position: relative;
         display: flex;
-        min-height: 360px;
+        min-height: 336px;
         flex-direction: column;
+        align-items: center;
         justify-content: space-between;
         padding: 28px;
         border: 1px solid var(--line);
         border-radius: 14px;
         background: linear-gradient(140deg, #1d1d1d, #121212 78%);
+        text-align: center;
         transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
       }
       .plan.featured {
@@ -257,6 +216,7 @@
       .plan-name { margin-bottom: 15px; color: #d9d8d2; font-size: 14px; font-weight: 600; }
       .price {
         display: flex;
+        justify-content: center;
         align-items: baseline;
         gap: 6px;
         margin: 0;
@@ -268,10 +228,12 @@
         line-height: 0.95;
       }
       .price span { color: #c9c8c2; font-family: var(--sans); font-size: 14px; font-weight: 500; letter-spacing: 0; }
+      .original-price { margin: 0 0 8px; color: #9e9d97; font-size: 14px; font-weight: 500; line-height: 1.2; text-decoration: line-through; text-decoration-thickness: 1px; }
+      .annual-bonus { margin: 12px 0 0; color: #ffe372; font-size: 14px; font-weight: 600; line-height: 1.45; }
       .price-note { min-height: 22px; margin: 12px 0 0; color: #a6a59f; font-size: 14px; line-height: 1.45; }
       .plan-divider { height: 1px; margin: 31px 0 22px; background: var(--line); }
-      .plan-description { width: fit-content; max-width: 100%; margin: 0; color: #c6c5c0; font-size: 16px; line-height: 1.55; }
-      .plan-footer { margin-top: 28px; }
+      .plan-description { width: 100%; max-width: 100%; margin: 0; color: #c6c5c0; font-size: 16px; line-height: 1.55; text-align: center; }
+      .plan-footer { width: 100%; margin-top: 28px; }
       .plan .button { width: 100%; }
       .button.outline { border-color: rgba(255,255,255,.36); background: transparent; color: #fffefa; }
       .button.outline:hover { border-color: white; background: #fffefa; box-shadow: none; color: #171717; }
@@ -281,7 +243,7 @@
         position: relative;
         padding: 85px 0 92px;
         border-top: 1px solid var(--line);
-        background: #111;
+        background: #151515;
       }
       .benefits::before {
         position: absolute;
@@ -293,15 +255,16 @@
         content: "";
         opacity: .8;
       }
-      .benefit-layout { max-width: 1080px; }
-      .benefit-copy h2 { max-width: 18ch; margin: 0 0 28px; }
-      .benefit-copy > p:last-of-type { width: 100%; max-width: none; margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+      .benefit-layout { max-width: 960px; text-align: center; }
+      .benefit-copy h2 { max-width: 18ch; margin: 0 auto 28px; text-align: center; }
+      .benefit-copy h2 .benefit-line { display: block; }
+      .benefit-copy > p:last-of-type { width: 100%; max-width: none; margin: 0 auto; color: var(--muted); font-size: 16px; line-height: 1.65; text-align: center; }
       .benefit-copy > p:last-of-type strong { color: #fffefa; font-weight: 600; }
       .benefit-support { display: block; }
 
       .faq { padding: 0 0 34px; background: #111; }
-      .faq-wrap { padding: 80px 0 0; border-top: 1px solid var(--line); }
-      .faq-head { display: grid; gap: 16px; margin-bottom: 32px; }
+      .faq-wrap { padding: 80px 0 0; }
+      .faq-head { display: grid; gap: 16px; justify-items: center; margin-bottom: 32px; text-align: center; }
       .faq h2, .contact-heading {
         max-width: 14ch;
         margin-bottom: 0;
@@ -316,7 +279,7 @@
       .faq-list details { border-bottom: 1px solid var(--line); }
       .faq-list summary {
         display: grid;
-        grid-template-columns: 1fr 24px;
+        grid-template-columns: minmax(0, 1fr) 24px;
         gap: 16px;
         align-items: center;
         padding: 20px 0;
@@ -326,18 +289,19 @@
         font-weight: 600;
         line-height: 1.45;
         list-style: none;
+        text-align: left;
       }
       .faq-list summary::-webkit-details-marker { display: none; }
       .faq-icon { color: var(--yellow); font-size: 20px; line-height: 1; transition: transform 180ms ease; }
       .faq-list details[open] .faq-icon { transform: rotate(45deg); }
-      .faq-answer { max-width: 52rem; padding: 0 40px 22px 0; color: #bbb9b3; font-size: 16px; line-height: 1.7; }
+      .faq-answer { max-width: 52rem; margin-inline: auto; padding: 0 0 22px; color: #bbb9b3; font-size: 16px; line-height: 1.7; text-align: left; }
       .faq-answer p:last-child, .faq-answer ul:last-child, .faq-answer ol:last-child { margin-bottom: 0; }
-      .faq-answer ul, .faq-answer ol { display: grid; gap: 8px; margin: 0 0 18px; padding-left: 22px; }
+      .faq-answer ul, .faq-answer ol { display: grid; gap: 8px; margin: 0 0 18px; padding-left: 22px; text-align: left; }
       .faq-answer a { color: var(--yellow); text-decoration: underline; text-decoration-color: rgba(255, 200, 0, .45); text-underline-offset: 3px; }
 
       .journalism { padding: 88px 0; background: #fff; color: #171717; text-align: center; }
       .faq .wrap, .contact .wrap, .journalism .wrap { max-width: 740px; }
-      .journalism-wrap { max-width: none; }
+      .journalism .journalism-wrap { max-width: 600px; margin-inline: auto; }
       .journalism h2 {
         max-width: none;
         margin: 0 auto 28px;
@@ -357,10 +321,10 @@
       .journalism h2 span { display: block; }
       @media (min-width: 600px) { .journalism h2 span { white-space: nowrap; } }
 
-      .contact { padding: 72px 0 96px; background: #111; }
-      .contact-heading { margin-bottom: 26px; }
+      .contact { padding: 72px 0 96px; background: #111; text-align: center; }
+      .contact-heading { margin: 0 auto 26px; text-align: center; }
       .contact-card { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #181818; }
-      .contact-intro, .contact-method { padding: 26px; }
+      .contact-intro, .contact-method { padding: 26px; text-align: center; }
       .contact-intro { border-bottom: 1px solid var(--line); background: #242424; }
       .contact-title { margin-bottom: 8px; color: #fffefa; font-size: 22px; font-weight: 600; }
       .contact-hours { margin-bottom: 0; color: #aaa8a2; font-size: 16px; line-height: 1.5; }
@@ -373,82 +337,31 @@
       .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .faq-list summary, .faq-answer, .contact-hours { font-size: 14px; }
 
       @media (max-width: 1279px) {
-        .hero-copy, .section-head, .benefit-copy, .faq-head, .journalism, .contact { text-align: center; }
-        .hero-anniversary, .section-head h2, .benefit-copy h2, .faq h2, .journalism h2, .contact-heading, .section-intro, .benefit-copy > p:last-of-type, .journalism-copy { margin-inline: auto; }
-        .hero-actions, .price { justify-content: center; }
-        .hero-visual img { right: 50%; transform: translate(50%, -50%); }
-        .plan { text-align: center; }
-        .plan-description { margin-inline: auto; }
-        .faq-list summary, .faq-answer { text-align: center; }
-        .contact-intro, .contact-method { text-align: center; }
+        h1 { font-size: 34px; }
+        .faq-answer { width: min(100%, 34rem); }
       }
 
-      @media (max-width: 1279px) {
-        h1 { max-width: none; font-size: 34px; white-space: nowrap; }
-        .faq-list summary { grid-template-columns: 24px minmax(0, 1fr) 24px; gap: 8px; }
-        .faq-list summary::before { width: 24px; height: 1px; content: ""; }
-        .faq-answer { width: min(100%, 34rem); margin-inline: auto; padding: 0 0 22px; }
+      @media (min-width: 700px) {
+        .hero-plans { grid-template-columns: 1fr 1.12fr; }
       }
-
       @media (min-width: 1280px) {
-        .section-head { grid-template-columns: minmax(0, 1.15fr) minmax(220px, .7fr); align-items: end; }
-        .plans { grid-template-columns: 1fr 1.12fr; }
         .plan { padding: 33px; }
         .contact-card { display: grid; grid-template-columns: .96fr 1fr 1fr; }
         .contact-intro, .contact-method { border-right: 1px solid var(--line); border-bottom: 0; }
         .contact-method:last-child { border-right: 0; }
       }
-      @keyframes hero-logogram-alternate {
-        0%, 100% {
-          opacity: 0;
-          transform: translate(-50%, -50%) scale(.94);
-        }
-        8%, 27% {
-          opacity: var(--logogram-opacity);
-          transform: translate(-50%, -50%) scale(1);
-        }
-        36% {
-          opacity: 0;
-          transform: translate(-50%, -50%) scale(1.02);
-        }
-      }
-      @keyframes hero-mobile-mockup-mask-loop {
-        0%, 32%, 100% {
-          opacity: 0;
-          -webkit-clip-path: inset(0 100% 0 0);
-          clip-path: inset(0 100% 0 0);
-        }
-        47%, 74% {
-          opacity: 1;
-          -webkit-clip-path: inset(0 0 0 0);
-          clip-path: inset(0 0 0 0);
-        }
-        88% {
-          opacity: 0;
-          -webkit-clip-path: inset(0 0 0 100%);
-          clip-path: inset(0 0 0 100%);
-        }
-      }
-      @keyframes hero-desktop-mockup-mask-loop {
-        0%, 32%, 100% {
-          opacity: 0;
-          -webkit-clip-path: inset(0 100% 0 0);
-          clip-path: inset(0 100% 0 0);
-        }
-        47%, 74% {
-          opacity: 1;
-          -webkit-clip-path: inset(0 0 0 0);
-          clip-path: inset(0 0 0 0);
-        }
-        88% {
-          opacity: 0;
-          -webkit-clip-path: inset(0 0 0 100%);
-          clip-path: inset(0 0 0 100%);
-        }
-      }
       @keyframes anniversary-halo {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
+      }
+      @keyframes anniversary-logo-mask-loop {
+        0%, 100% { opacity: 0; -webkit-clip-path: inset(0 100% 0 0); clip-path: inset(0 100% 0 0); }
+        12%, 72% { opacity: 1; -webkit-clip-path: inset(0 0 0 0); clip-path: inset(0 0 0 0); }
+        86% { opacity: 0; -webkit-clip-path: inset(0 0 0 100%); clip-path: inset(0 0 0 100%); }
+      }
+      @keyframes hero-gold-glow {
+        0%, 100% { opacity: .36; transform: translate3d(-7%, -4%, 0) scale(.96) rotate(-4deg); }
+        50% { opacity: .68; transform: translate3d(8%, 6%, 0) scale(1.08) rotate(4deg); }
       }
       @keyframes sparkle-float-one {
         0%, 100% { opacity: .22; transform: translateY(8px) rotate(0deg) scale(.72); }
@@ -465,9 +378,10 @@
 
       @media (min-width: 1280px) {
         body { font-size: 16px; }
-        .wrap, .hero-content { width: calc(100% - 370px); }
-        .faq .wrap, .contact .wrap, .journalism .wrap { width: calc(100% - 370px); max-width: 740px; }
-        .hero-mobile-visual { display: none; }
+        .wrap { width: calc(100% - 370px); }
+        .hero-content { width: min(calc(100% - 370px), 960px); }
+        .faq .wrap, .contact .wrap { width: calc(100% - 370px); max-width: 740px; }
+        .journalism .journalism-wrap { width: 600px; max-width: 100%; }
         .hero { min-height: 0; }
         .hero-description, .section-intro, .plan-description, .benefit-copy > p:last-of-type, .faq-list summary, .faq-answer, .contact-hours { font-size: 16px; }
         h1 { max-width: none; font-size: 56px; }
@@ -477,25 +391,14 @@
         .contact-heading { max-width: none; white-space: nowrap; }
         .price { font-size: 56px; }
         .contact-value { font-size: 18px; }
-        .hero-content { grid-template-columns: .98fr 1.02fr; gap: 12px; padding: 108px 0; }
-        .hero-visual { display: block; min-height: 380px; margin: -10px -80px -24px -60px; }
-        .hero-visual img { right: -12px; top: calc(50% + 28px); width: min(560px, 45vw); }
-        .benefit-layout { max-width: 1080px; }
+        .hero-content { padding: 108px 0; }
         .journalism-wrap { display: block; }
         .journalism h2 { margin: 0 auto 32px; font-size: 40px; }
       }
       @media (min-width: 600px) and (max-width: 1439px) {
-        .hero-content { grid-template-columns: 1fr; gap: 0; }
-        .hero-copy { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .hero-anniversary { order: 1; margin-inline: auto; }
-        .hero-copy h1 { order: 2; max-width: none; font-size: 44px; white-space: nowrap; }
-        .hero-description { order: 3; max-width: 44rem; margin-inline: auto; }
-        .hero-actions { order: 4; }
-        .hero-offer { order: 5; max-width: 38rem; margin-inline: auto; }
-        .hero-mobile-visual { order: 6; display: block; width: min(340px, 52vw); margin: 34px auto 0; }
-        .hero-visual { display: none; }
+        .hero-copy h1 { font-size: 44px; }
       }
-      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button, .plan { transition: none; } .hero-mobile-visual::before, .hero-visual::before { display: none; animation: none; } .hero-mobile-visual img, .hero-visual img, .plan.featured::before, .plan-sparkle { animation: none; } }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button, .plan { transition: none; } .hero::after, .hero-anniversary, .plan.featured::before, .plan-sparkle { animation: none; } }
     </style>
   </head>
   <body>
@@ -506,16 +409,40 @@
             <img class="hero-anniversary" src="Assets/31KompasLight.png" alt="31 tahun Kompas.com" />
             <h1 id="page-title">Anniversary Sale<br /><em>Jernih Berdampak</em></h1>
             <p class="hero-description">Selama 31 tahun, Kompas.com menemani Indonesia memahami dunia. Rayakan bersama kami lewat akses terbaik ke konten yang lebih utuh, lebih dalam, dan tanpa batas.</p>
-            <div class="hero-mobile-visual" aria-hidden="true">
-              <img src="Assets/MAXMobile.png" alt="" />
+            <div class="plans hero-plans" id="harga">
+              <article class="plan" aria-labelledby="monthly-title">
+                <div>
+                  <p class="plan-name" id="monthly-title">PLUS MAX Bulanan</p>
+                  <p class="price">Rp31.000 <span>/ bulan</span></p>
+                  <p class="price-note">Fleksibel untuk menikmati pengalaman MAX.</p>
+                  <div class="plan-divider"></div>
+                  <p class="plan-description">Akses penuh seluruh benefit PLUS MAX, ditagihkan setiap bulan.</p>
+                </div>
+                <div class="plan-footer">
+                  <a class="button outline" href="https://plus.kompas.com/package?product=web.kcmplus.max.specialhut31.monthly" target="_blank" rel="noreferrer">Gabung Membership</a>
+                  <p class="cancel-note">Batalkan kapanpun</p>
+                </div>
+              </article>
+              <article class="plan featured" aria-labelledby="annual-title">
+                <span class="plan-badge">Best Value</span>
+                <i class="ph-fill ph-sparkle plan-sparkle plan-sparkle-one" aria-hidden="true"></i>
+                <i class="ph-fill ph-sparkle plan-sparkle plan-sparkle-two" aria-hidden="true"></i>
+                <i class="ph-fill ph-sparkle plan-sparkle plan-sparkle-three" aria-hidden="true"></i>
+                <div>
+                  <p class="plan-name" id="annual-title">PLUS MAX Tahunan</p>
+                  <p class="original-price">Rp299.000</p>
+                  <p class="price">Rp131.000 <span>/ tahun</span></p>
+                  <p class="annual-bonus">Bonus 1 Bulan, total aktif 13 bulan</p>
+                  <p class="price-note">Setara Rp10.917 / bulan</p>
+                  <div class="plan-divider"></div>
+                  <p class="plan-description">Pilih setahun penuh untuk menikmati bacaan berkualitas dengan nilai terbaik.</p>
+                </div>
+                <div class="plan-footer">
+                  <a class="button" href="https://plus.kompas.com/package?product=web.kcmplus.max.specialhut31.yearly" target="_blank" rel="noreferrer">Gabung Membership</a>
+                  <p class="cancel-note">Batalkan kapanpun</p>
+                </div>
+              </article>
             </div>
-            <div class="hero-actions">
-              <a class="button" href="#harga">Lihat Harga Spesial</a>
-            </div>
-            <p class="hero-offer"><s>Rp29.000</s> <strong>Rp25.000</strong> untuk 1 bulan atau <s>Rp139.000</s> <strong>Rp131.000</strong> untuk 1 tahun.</p>
-          </div>
-          <div class="hero-visual" aria-hidden="true">
-            <img src="Assets/BannerMAX.png" alt="" />
           </div>
         </div>
       </section>
@@ -530,39 +457,41 @@
           </div>
         </section>
 
-        <section class="pricing" id="harga" aria-labelledby="pricing-title">
+        <section class="pricing" id="legacy-pricing" aria-labelledby="legacy-pricing-title" hidden>
           <div class="wrap">
             <div class="section-head">
               <div>
-                <h2 id="pricing-title">Special<br />Anniversary Sale</h2>
+                <h2 id="legacy-pricing-title">Special<br />Anniversary Sale</h2>
               </div>
               <p class="section-intro">Dua pilihan sederhana untuk menikmati seluruh pengalaman Kompas.com PLUS MAX—dengan harga spesial perayaan 31 tahun.</p>
             </div>
 
             <div class="plans">
-              <article class="plan" aria-labelledby="monthly-title">
+              <article class="plan" aria-labelledby="legacy-monthly-title">
                 <div>
-                  <p class="plan-name" id="monthly-title">PLUS MAX Bulanan</p>
-                  <p class="price">Rp25.000 <span>/ bulan</span></p>
+                  <p class="plan-name" id="legacy-monthly-title">PLUS MAX Bulanan</p>
+                <p class="price">Rp31.000 <span>/ bulan</span></p>
                   <p class="price-note">Fleksibel untuk menikmati pengalaman MAX.</p>
                   <div class="plan-divider"></div>
                   <p class="plan-description">Akses penuh seluruh benefit PLUS MAX, ditagihkan setiap bulan.</p>
                 </div>
                 <div class="plan-footer">
-                  <a class="button outline" href="https://plus.kompas.com" target="_blank" rel="noreferrer">Gabung Membership</a>
+                  <a class="button outline" href="https://plus.kompas.com/package?product=web.kcmplus.max.specialhut31.monthly" target="_blank" rel="noreferrer">Gabung Membership</a>
                   <p class="cancel-note">Batalkan kapanpun</p>
                 </div>
               </article>
 
-              <article class="plan featured" aria-labelledby="annual-title">
+              <article class="plan featured" aria-labelledby="legacy-annual-title">
                 <span class="plan-badge">Best Value</span>
                 <i class="ph-fill ph-sparkle plan-sparkle plan-sparkle-one" aria-hidden="true"></i>
                 <i class="ph-fill ph-sparkle plan-sparkle plan-sparkle-two" aria-hidden="true"></i>
                 <i class="ph-fill ph-sparkle plan-sparkle plan-sparkle-three" aria-hidden="true"></i>
                 <div>
-                  <p class="plan-name" id="annual-title">PLUS MAX Tahunan</p>
-                  <p class="price">Rp131.000 <span>/ tahun</span></p>
-                  <p class="price-note">Setara Rp10.917 / bulan</p>
+                  <p class="plan-name" id="legacy-annual-title">PLUS MAX Tahunan</p>
+                <p class="original-price">Rp299.000</p>
+                <p class="price">Rp131.000 <span>/ tahun</span></p>
+                <p class="annual-bonus">Bonus 1 Bulan, total aktif 13 bulan</p>
+                <p class="price-note">Setara Rp10.917 / bulan</p>
                   <div class="plan-divider"></div>
                   <p class="plan-description">Pilih setahun penuh untuk menikmati bacaan berkualitas dengan nilai terbaik.</p>
                 </div>
